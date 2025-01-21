@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESTINATIONS - 14 Trails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0px;
+            color: #ffffff;
+            text-align: center;
+            background: linear-gradient(to right, #000478, #000000);
+        }
+
+        .navbar {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        header {
+            background: url('MEDIA/bg1.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.137);
+        }
+
+        .image-slider {
+            position: relative;
+            width: 90%;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slider-item {
+            min-width: 50%;
+            box-sizing: border-box;
+            text-align: center;
+            aspect-ratio: 4 / 3; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .text-box {
+        flex: 1;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        border-radius: 5px;
+        margin-right: 15px;
+        max-width: 250px;
+        }
+
+        .slider-item img {
+            width: 40%;
+            height: 80%;
+            object-fit: cover; 
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .slider-item img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        .image-slider1 {
+            position: relative;
+            width: 80%;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-container1 {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 50%;
+            gap:10px;
+        }
+
+        .slider-item1 {
+            min-width: 50%;
+            box-sizing: border-box;
+            text-align: center;
+            aspect-ratio: 4 / 3; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .slider-item1 img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover; 
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .slider-item1 img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 24px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: black;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: -250px;
+            top: 0;
+            background: #000000;
+            color: white;
+            padding-top: 20px;
+            transition: left 0.3s ease;
+            z-index: 9999;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #575757;
+        }
+
+        .toggle-btn {
+            position:fixed;
+            left: 10px;
+            top: 100px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            display: none;
+            z-index: 9999;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar.open .close-btn {
+            display: block; 
+        }
+
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #000000;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgb(255, 255, 255);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .scroll-top:hover {
+            background: #00aaff;
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        .cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+
+        .cta a {
+            background: #1a976d;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 1.2rem;
+        }
+
+
+        .cta a:hover {
+            background: #162843;
+        }
+
+        .footer-section {
+            background: rgb(0, 145, 255);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+
+        .footer-logo img {
+            width: 100px;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .footer-links {
+            flex: 1;
+            text-align: left;
+        }
+
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+
+
+        .footer-links a {
+            text-decoration: none;
+            color: #162843;
+        }
+
+
+        .footer-links a:hover {
+            color: #FF5A1F;
+        }
+
+        .chatbox-container {
+            display: none; 
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: rgb(0, 0, 0);
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            margin: auto; 
+        }
+
+        .chatbox-header {
+            background-color: #1a976d;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .chatbox-content {
+            padding: 10px;
+            overflow-y: auto;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .chatbox-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .chatbox-footer input {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chatbox-footer button {
+            background-color: #1a976d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chatbox-footer button:hover {
+            background-color: #162843;
+        }
+
+        .chatbox-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a976d;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .centered-text {
+            text-align: center;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-left">
+            <li>
+                <a href="#logoModal">
+                    <img src="MEDIA/LOGO.png" alt="Brand Logo" class="logo" style="height: 80px;">
+                </a>
+            </li>
+        </ul>
+        <nav class="navbar">
+            <a href="#" class="logo">14 Rails</a>
+            <ul>
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="destinations.html">Destination</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    <header>
+        <div class="overlay"></div>
+        <h1><b>YOUR DESTINATIONS</b></h1>
+        <p><i>Walk the Trails, Feel the Magic of Malaysia</i></p>
+    </header>
+
+    <h1>CHOOSE YOUR TRAILS</h1>
+
+    <div class="image-slider">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider-container">
+            <div class="slider-item">
+                <div class="text-box">
+                    <h3>Beaches & Islands</h3>
+                    <p>"The ocean stirs the heart, inspires the imagination, and brings eternal joy to the soul." – Robert Wyland.</p>
+                </div>
+            <img src="MEDIA/trail1.jpg" alt="Destination 1" onclick="openModal('Trail 1: Explore the serene forests and rivers.')"></div>
+            <div class="slider-item">
+                <div class="text-box">
+                    <h3>Shopping Mall</h3>
+                    <p>Everything you need under one roof!</p>
+                </div>
+            <img src="MEDIA/trail2.jpg" alt="Destination 2" onclick="openModal('Trail 2: Discover the beauty of highland paths.')"></div>
+            <div class="slider-item">
+                <div class="text-box">
+                    <h3>Historical place</h3>
+                    <p>"The past is a prologue, and historical places keep its stories alive." – William Shakespeare.</p>
+                </div>
+            <img src="MEDIA/trail4.jpg" alt="Destination 4" onclick="openModal('Trail 4: Walk through vibrant cultural landscapes.')"></div>
+            <div class="slider-item">
+                <div class="text-box">
+                    <h3>Theme Park</h3>
+                    <p>Ready to travel for fun and feel different experiences in every continent in Malaysia</p>
+                </div>
+            <img src="MEDIA/trail5.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')"></div>
+            <div class="slider-item">
+                <div class="text-box">
+                    <h3>National Park</h3>
+                    <p>"The earth has music for those who listen." – George Santayana</p>
+                </div>
+            <img src="MEDIA/tabin.jpg" alt="Destination 6" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')"></div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+<h1 id="T1">Beaches and Islands</h1>
+    <div class="image-slider1">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider-container1">
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Tioman+Island/@2.8064796,104.0879326,27835m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31c51b92f94cd239:0xb7b7e438fc01e28e!8m2!3d2.7902494!4d104.1698463!16zL20vMDFubWIx?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/tioman.jpg" alt="Destination 1" onclick="openModal('Trail 1: Explore the serene forests and rivers.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Langkawi,+07000+Langkawi,+Kedah/@6.3499994,99.7794004,6924m/data=!3m2!1e3!4b1!4m6!3m5!1s0x304c78da69c4755d:0xe43971dbd7bd6dfe!8m2!3d6.35!4d99.8!16zL20vMDI2bTVy?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/langkawi.jpg" alt="Destination 2" onclick="openModal('Trail 2: Discover the beauty of highland paths.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Sipadan+Island/@4.1147557,118.6261166,869m/data=!3m2!1e3!4b1!4m6!3m5!1s0x321534ffcf670e7d:0x55dd166135d28e89!8m2!3d4.1149742!4d118.6286669!16zL20vMDVseHc2?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/sipadan.jpg" alt="Destination 3" onclick="openModal('Trail 3: Experience coastal trails and sunsets.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Perhentian+Islands/@5.9092295,102.7067951,13860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31b6c101aced7741:0x82bc3dbe074ed77a!8m2!3d5.909231!4d102.7479949!16zL20vMDJ3bTNm?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/Perhentian Islands.jpg" alt="Destination 4" onclick="openModal('Trail 4: Walk through vibrant cultural landscapes.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Pangkor+Island/@4.2271005,100.5178971,13896m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3034d396cbb7f341:0xc8f2ba9f74ec3895!8m2!3d4.2274912!4d100.5577407!16zL20vMDVzNmp2?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/pangkor.jpg"alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/teluk+cempedak/@3.8126007,103.3514035,6952m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/telukcempedak.jpg" alt="Destination 6" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps?sca_esv=b35a438e86402957&output=search&q=pantai+desaru&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3J5m2RNdZ7TqBBDB_EAGU4N1KmHmEYoxnGi716uJtDrT4BejLFemESLcx0_AxYgHtu8eacEg_PQPBKp4WA_phPl-jYzFD0o48MpfGkty9-I6wrDPuX3Nge7TBIQMA-QMTzM83rds08HKway8tTUMlCatoUAtHMlWN5gA_8qus_baBSuN6VQ&entry=mc&ved=1t:200715&ictx=111">
+                    <img src="MEDIA/desaru.jpg" alt="Destination 7" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Pantai+Penarik/@5.6051732,102.7959926,6934m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31b70010c4ad25eb:0xf7f7edadbf34173!8m2!3d5.6051737!4d102.8165922!16s%2Fg%2F1hcb0gq15?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/penarik.jpg" alt="Destination 8" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+<h1 id="T2">Shopping Mall</h1>
+    <div class="image-slider1">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider-container1">
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/dataran+pahlawan+mall/@2.1901003,102.2484373,870m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/dp.jpg" alt="Destination 1" onclick="openModal('Trail 1: Explore the serene forests and rivers.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/IOI+City+Mall/@2.970663,101.7110932,870m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31cdca0c21c76841:0x2c98384480140180!8m2!3d2.970663!4d101.7136681!16s%2Fg%2F11b6v7_6_h?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/trail2.jpg" alt="Destination 2" onclick="openModal('Trail 2: Discover the beauty of highland paths.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Genting+Highlands+Premium+Outlets/@3.4033765,101.780541,869m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31cc143c8cf90343:0x153b2b839a29b3a9!8m2!3d3.4033765!4d101.7831159!16s%2Fg%2F11c1p2kbwr?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/gpo.jpg" alt="Destination 3" onclick="openModal('Trail 3: Experience coastal trails and sunsets.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/johor+premium+outlet/@1.6090569,103.6008802,6964m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/jpo.jpg" alt="Destination 4" onclick="openModal('Trail 4: Walk through vibrant cultural landscapes.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/trx+malaysia/@3.1428529,101.7126589,1739m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/trx.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Queensbay+Mall/@5.3331774,100.3040335,867m/data=!3m2!1e3!4b1!4m6!3m5!1s0x304ac0f6419ddf33:0xfad4d772f2c85345!8m2!3d5.3331774!4d100.3066084!16s%2Fg%2F1221bp46?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/queensbay.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps?sca_esv=b35a438e86402957&output=search&q=mid+valley+kl&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkW1DRbm01j6DCVS0r1sTxn7pvw1ZnNyZYKWuMR5GMUVE89ig02OdSmPl1aSyOmxbcW9dB3LfFFIdGPV21wRNp3uJrkDlwn-UJrxdjWqYm4fnHzjuRORKlRiGFun9C2QJiARpCm45DryMCAybHwP7g3TaDiusUB-EGfqvANm2MECkTEhJTN4iUP0pm7Lo3i_ycugS8GGA&entry=mc&ved=1t:200715&ictx=111">
+                    <img src="MEDIA/midvalley.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Sunway+Pyramid+Shopping+Mall/@3.0720837,101.6037706,870m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31cc4c8776586d9b:0x5e19a549d4f26f25!8m2!3d3.0720837!4d101.6063455!16zL20vMGQ3MGM4?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/sunway.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Suria+Sabah/@5.9867933,116.074929,866m/data=!3m2!1e3!4b1!4m6!3m5!1s0x323b69861c613767:0xfd775190042ffaf!8m2!3d5.9867933!4d116.0775039!16s%2Fg%2F11vk9t6wf?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/suria.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+<h1 id="T3">Historical Place</h1>
+    <div class="image-slider1">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider-container1">
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Sultan+Abdul+Samad+Building/@3.1486226,101.6918296,870m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31cc49cd9b918dfd:0xdf3986fb55b00628!8m2!3d3.1486226!4d101.6944045!16zL20vMDV3bXlx?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/dataranmerdeka.jpg" alt="Destination 1" onclick="openModal('Trail 1: Explore the serene forests and rivers.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/the+stadthuys/@2.1939875,102.2447613,870m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/thesta.jpg" alt="Destination 2" onclick="openModal('Trail 2: Discover the beauty of highland paths.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Atkinson+Clock+Tower/@5.9821568,116.0747435,866m/data=!3m2!1e3!4b1!4m6!3m5!1s0x323b698d109bb3cb:0xa366bcf037882228!8m2!3d5.9821568!4d116.0773184!16s%2Fm%2F0jwr14z?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/clocktower.jpg" alt="Destination 3" onclick="openModal('Trail 3: Experience coastal trails and sunsets.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/search?q=terengganu+state+museum&oq=terengganu+sta&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7Mg0IARAuGK8BGMcBGIAEMgcIAhAuGIAEMgcIAxAAGIAEMgYIBBBFGDkyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyBwgIEAAYgAQyBwgJEAAYgATSAQgyNjk4ajBqNKgCALACAA&sourceid=chrome&ie=UTF-8">
+                    <img src="MEDIA/terengganustatemuseum.jpg" alt="Destination 4" onclick="openModal('Trail 4: Walk through vibrant cultural landscapes.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/jonker+walk/@2.2051012,102.1849772,13924m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/jonkerwalk.jpg" alt="Destination 6" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/muzium+negara/@3.1375531,101.6849755,870m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/trail3.jpg" alt="Destination 7" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/A+Famosa/@2.1917988,101.0308854,222784m/data=!3m1!1e3!4m10!1m2!2m1!1safamosa!3m6!1s0x31d1f1e0a3a7681d:0xc2e4da7ca10e63b5!8m2!3d2.1917988!4d102.2503678!15sCgdhZmFtb3NhWgkiB2FmYW1vc2GSAQhmb3J0cmVzc-ABAA!16zL20vMGRneWZj?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/trail4.jpg" alt="Destination 8" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Istana+Besar,+Taman+Istana,+80000+Johor+Bahru,+Johor/@1.455,103.7537891,871m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31da12ebbf94a925:0x16ef62e4bd85473d!8m2!3d1.455!4d103.756364!16zL20vMGNjZ3Z0?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/istanabesar.jpg" alt="Destination 9" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/kek+lok+si+temple/@5.3993214,100.2710721,867m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/keklok.jpg" alt="Destination 10" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+<h1 id="T4">Theme Park</h1>
+    <div class="image-slider1">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider-container1">
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/A'Famosa+Resort/@2.446552,102.2066387,870m/data=!3m1!1e3!4m9!3m8!1s0x31ce03ac4e88bbd3:0x3af14a6ebc2b1887!5m2!4m1!1i2!8m2!3d2.446552!4d102.2092136!16s%2Fm%2F065y056?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/afamosaresort.jpg.jpg" alt="Destination 1" onclick="openModal('Trail 1: Explore the serene forests and rivers.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/lost+world+of+tambun/@4.6254633,101.1527411,868m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/lostworld.jpg" alt="Destination 2" onclick="openModal('Trail 2: Discover the beauty of highland paths.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Sunway+Lagoon/@3.0692108,101.5967269,3479m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31cc4c88dded3125:0xdb654cc77af0cdbc!8m2!3d3.0693932!4d101.6067533!16zL20vMGQ1NXh0?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/sunwaylagoon.jpg" alt="Destination 3" onclick="openModal('Trail 3: Experience coastal trails and sunsets.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/genting+skyworlds/@3.4221891,101.7914673,869m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/gentingsky.jpg" alt="Destination 4" onclick="openModal('Trail 4: Walk through vibrant cultural landscapes.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps?sca_esv=15988f96c695c280&output=search&q=legoland+malaysia&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3J5m2RNdZ7TqBBDB_EAGU4N1KmHmEYoxnGi716uJtDrT4BejLFemESLcx0_AxYgHtu8eacEg_PQPBKp4WA_phPl-jYzFD0o48MpfGkty9-I6wrDPuX3Nge7TBIQMA-QMTzM83rds08HKway8tTUMlCatoUAtHMlWN5gA_8qus_baBSuN6VQ&entry=mc&ved=1t:200715&ictx=111">
+                    <img src="MEDIA/trail5.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Adventure+Waterpark+Desaru+Coast/@1.5379874,104.2589702,871m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31da4b681875aaff:0x60e2925763916144!8m2!3d1.5379874!4d104.2615451!16s%2Fg%2F11g7nptndw?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/coastwaterpark.jpg" alt="Destination 6" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/ESCAPE+Penang/@5.4497405,100.2114631,867m/data=!3m2!1e3!4b1!4m6!3m5!1s0x304ac3a45d25df75:0xe55b46784fbcb260!8m2!3d5.4497405!4d100.214038!16s%2Fg%2F1w3sx3lr?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/escape.jpg" alt="Destination 7" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps?sca_esv=15988f96c695c280&output=search&q=berjaya+theme+park&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3J5m2RNdZ7TqBBDB_EAGU4N1KmHmEYoxnGi716uJtDrT4BejLFemESLcx0_AxYgHtu8eacEg_PQPBKp4WA_phPl-jYzFD0o48MpfGkty9-I6wrDPuX3Nge7TBIQMA-QMTzM83rds08HKway8tTUMlCatoUAtHMlWN5gA_8qus_baBSuN6VQ&entry=mc&ved=1t:200715&ictx=111">
+                    <img src="MEDIA/berjaya.jpg" alt="Destination 8" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+    <h1 id="T5">National Park</h1>
+    <div class="image-slider1">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider-container1">
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/langkawi+geoforest+park/@6.4049596,99.8556428,865m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/geopark.jpg" alt="Destination 1" onclick="openModal('Trail 1: Explore the serene forests and rivers.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Tabin+Wildlife+Reserve/@5.2144223,118.7172255,867m/data=!3m2!1e3!4b1!4m6!3m5!1s0x32409dc7f54f30db:0x15dc8062d5c85e55!8m2!3d5.2144223!4d118.7198004!16zL20vMDc4cnRf?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/tabin.jpg"alt="Destination 2" onclick="openModal('Trail 2: Discover the beauty of highland paths.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Penang+National+Park/@5.4471423,100.1914174,867m/data=!3m2!1e3!4b1!4m6!3m5!1s0x304aebcd109625ed:0xe48f33317fbd27c1!8m2!3d5.4471423!4d100.1939923!16s%2Fm%2F03cg51y?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/penangnationalpark.jpg" alt="Destination 3" onclick="openModal('Trail 3: Experience coastal trails and sunsets.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/royal+belum+state+park/@5.6126314,101.2911482,27735m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/royalbelum.jpg" alt="Destination 4" onclick="openModal('Trail 4: Walk through vibrant cultural landscapes.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Kinabalu+Park,+Ranau,+Sabah/@6.0325559,116.4800098,13857m/data=!3m2!1e3!4b1!4m10!1m2!2m1!1skinabalu+park!3m6!1s0x323b9886e1eb113f:0x983767a5811b5f0a!8m2!3d6.021255!4d116.5462981!15sCg1raW5hYmFsdSBwYXJrkgEMc3VibG9jYWxpdHkx4AEA!16s%2Fg%2F1tpb8hz3?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/kinabalupark.jpg" alt="Destination 5" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/kuala+selangor+nature+park/@3.3369379,101.2353428,1739m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/kualaselangor.jpg" alt="Destination 6" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/place/Taman+Negara+Endau-Rompin/@2.471916,103.263773,870m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31cfe189383916af:0xe724e311a3c49573!8m2!3d2.471916!4d103.2663479!16zL20vMGI1MnNf?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/endaurompin.jpg" alt="Destination 7" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+            <div class="slider-item1">
+                <a href="https://www.google.com/maps/search/taman+negara+national+park/@4.5105511,102.2388576,55564m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D">
+                    <img src="MEDIA/tamannegara.jpg" alt="Destination 8" onclick="openModal('Trail 5: Marvel at wildlife and lush jungles.')">
+                </a>
+            </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">X</button>
+        <a href="#T1">Beaches and Islands</a>
+        <a href="#T2">Shopping Mall</a>
+        <a href="#T3">Historical Place</a>
+        <a href="#T4">Theme Park</a>
+        <a href="#T5">National Park</a>
+
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+    </script>
+
+    <script>
+        document.querySelectorAll(".image-slider").forEach((slider) => {
+            let slideIndex = 0;
+            const slides = slider.querySelectorAll(".slider-item");
+            const totalSlides = slides.length;
+            const sliderContainer = slider.querySelector(".slider-container");
+            const prevButton = slider.querySelector(".prev");
+            const nextButton = slider.querySelector(".next");
+
+            function moveSlide(n) {
+                slideIndex += n;
+                if (slideIndex < 0) {
+                    slideIndex = totalSlides - 1;
+                } else if (slideIndex >= totalSlides) {
+                    slideIndex = 0;
+                }
+                sliderContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+            }
+
+            prevButton.addEventListener("click", () => moveSlide(-1));
+            nextButton.addEventListener("click", () => moveSlide(1));
+        });
+
+        document.querySelectorAll(".image-slider1").forEach((slider) => {
+            let slideIndex = 0;
+            const slides = slider.querySelectorAll(".slider-item1");
+            const totalSlides = slides.length;
+            const sliderContainer = slider.querySelector(".slider-container1");
+            const prevButton = slider.querySelector(".prev");
+            const nextButton = slider.querySelector(".next");
+
+            function moveSlide(n) {
+                slideIndex += n;
+                if (slideIndex < 0) {
+                    slideIndex = totalSlides - 1;
+                } else if (slideIndex >= totalSlides) {
+                    slideIndex = 0;
+                }
+                sliderContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+            }
+
+            prevButton.addEventListener("click", () => moveSlide(-1));
+            nextButton.addEventListener("click", () => moveSlide(1));
+        });
+    </script>
+
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i><p>&#x2B06;</p></a>
+
+<script>
+    
+    const scrollTopBtn = document.getElementById("scroll-top");
+    window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add("show");
+        } else {
+            scrollTopBtn.classList.remove("show");
+        }
+    });
+
+    scrollTopBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
+
+<div class="chatbox-container" id="chatboxContainer" style="display: flex; align-items: center; justify-content: center;">
+    <div class="chatbox-header" onclick="toggleChatBox()">
+        <span>Hi, I am your Travel Advisor</span>
+    </div>
+    <div class="chatbox-content">
+        <p>Feel free to message us with any inquiries related to travel destinations in Malaysia. We're happy to help!</p>
+        <p>For other inquiries, please reach out to our team:</p>
+        <ul>
+            <li>General Travel Tips</li>
+            <li>Accommodation Suggestions</li>
+            <li>Local Travel Experiences</li>
+        </ul>
+    </div>
+    <form action="mailto:hakim888801@gmail.com" method="POST" enctype="multipart/form-data">
+        <div class="chatbox-footer">
+            <input type="text" name="message" placeholder="Write your message..." required>
+            <button type="submit">Send</button>
+        </div>
+    </form>
+</div>
+
+<footer class="footer-section">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="MEDIA/logo-placeholder.png" alt="Logo">
+            <p>The Proper Way to Travel</p>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">Services</a></li>
+                <li><a href="about.html">Process</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Explore</h4>
+            <ul>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="destinations.html">Top Places</a></li>
+                <li><a href="destinations.html">Learn More</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+
+<div class="chatbox-toggle" onclick="toggleChatBox()">💬</div>
+
+
+<footer>
+    <p>&copy; 2025 14 Trails. All Rights Reserved.</p>
+</footer>
+
+
+<script>
+    function toggleChatBox() {
+        const chatbox = document.getElementById('chatboxContainer');
+        chatbox.style.display = chatbox.style.display === 'flex' ? 'none' : 'flex';
+    }
+</script>
+
+
+</body>
+</html>

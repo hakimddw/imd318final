@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width", initial-scales=1.0>
+    <title>14 TRAILS - FEEL MAGIC OF MALAYSIA</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+    
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    height: 100vh;
+    padding: 50px 100px 0;
+    color: #fff;
+}
+
+.info {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.info .title-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.info p {
+    margin: 5px 0 15px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.info .btn:hover {
+    background-color: #c1fcb6;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 50px;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.login-box {
+    width: 450px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 50px 40px;
+}
+
+.login-box h1 {
+    font-size: 36px;
+    text-align: center;
+    line-height: 1;
+}
+
+.login-box .input-box {
+    position: relative;
+    margin: 30px 0;
+}
+
+.login-box .input-box input {
+    width: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    outline: none;
+    border-radius: 40px;
+    padding: 13px 50px 13px 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.login-box .input-box input::placeholder {
+    color: #fff;
+}
+
+.login-box .input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.login-box .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.login-box .remember-forgot label {
+    display: flex;
+}
+
+.login-box .remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 6px;
+}
+
+.login-box .remember-forgot a:hover, .login-box .register-link a:hover {
+    text-decoration: underline;
+}
+
+.login-box .btn {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.login-box .register-link {
+    display: flex;
+    justify-content: center;
+    font-size: 14.5px;
+    margin-top: 15px;
+}
+
+.login-box .register-link a {
+    font-weight: 600;
+    margin-left: 4px;
+}
+</style>
+<body>
+    <main>
+        <nav class="navbar">
+            <a href="#" class="logo">14 Rails</a>
+            <ul>
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="destinations.html">Destination</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="info">
+                <img src="MEDIA/LOGO.png" alt="14 RAILS" style="max-width: 100%; height: auto;">
+                <p>Walk the Trails, Feel the Magic of Malaysia</p>
+                <a href="contact.html" class="btn">Join Us</a>
+            </div>
+
+            <div class="login-wraapper">
+                <div class="login-box">
+                    <form action="">
+                        <h1>Login</h1>
+                        <div class="input-box">
+                            <input type="text" placeholder="Username" required>
+                            <i class='bx bxs-user'></i>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" placeholder="Password" required>
+                            <i class='bx bxs-lock-alt'></i>
+                        </div>
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">Remember me</label>
+                            <a href="#">Forget password?</a>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                        <div class="register-link">
+                            <p>Don't have an account?</p>
+                            <a href="#">Register</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | 14 Trails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <head>
+        <body>
+            <nav class="navbar">
+                <a href="#" class="logo">14 Rails</a>
+                <ul>
+                    <li><a href="Homepage.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="destinations.html">Destination</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        
+    <style>
+        
+        body 
+        {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            color: #333;
+            background: linear-gradient(to right, #f0f4f8, #d9e4f5);
+        }
+
+        header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            filter: brightness(0.7);
+        }
+
+        .background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .text-overlay h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+        }
+
+        .text-overlay p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+        }
+
+        .about-us {
+            padding: 3rem;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 2rem;
+        }
+
+        .about-us h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #162843;
+        }
+
+        .about-us p {
+            line-height: 1.8;
+            margin: 1rem 0;
+            text-align: justify;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+        .elegant-box {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .testimonials {
+            margin: 2rem 0;
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonials h3 {
+            margin-bottom: 1rem;
+            color: #1a976d;
+        }
+
+        .cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta a {
+            background: #1a976d;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .cta a:hover {
+            background: #162843;
+        }
+        
+        footer-section {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo img {
+            width: 100px;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            flex: 1;
+            text-align: left;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #162843;
+        }
+
+        .footer-links a:hover {
+            color: #FF5A1F;
+        }
+
+        .image-slider {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .image-box {
+            flex: 1;
+            margin: 0 1rem;
+        }
+
+        .image-box img {
+            width: 70%; 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-container {
+            display: flex;
+            animation: slide 30s infinite;
+        }
+
+        .slider-item {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 5px; 
+            box-sizing: border-box;
+        }
+
+        .slider-item img {
+            width: 50%; 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: auto; 
+            display: block; 
+            cursor: pointer;
+        }
+
+        .slider-item img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            16.66% { transform: translateX(-100%); }
+            33.33% { transform: translateX(-200%); }
+            50% { transform: translateX(-300%); }
+            66.66% { transform: translateX(-400%); }
+            83.33% { transform: translateX(-500%); }
+            100% { transform: translateX(0); }
+        }
+
+        .contact-card {
+            width: 200px;
+            height: 300px;
+            perspective: 1000px;
+            margin: 20px;
+            display: inline-block;
+            text-align: center; 
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: box-shadow 0.3s;
+        }
+
+        .contact-card:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card-inner:hover {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-front {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #162843;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        .card-back {
+            background-color: #1a976d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transform: rotateY(180deg);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+        }
+
+        .card-back img {
+            width: 80%;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px lightgreen;
+            }
+            100% {
+                box-shadow: 0 0 20px lightgreen;
+            }
+        }
+
+        .chatbox-container {
+            display: none; 
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            margin: auto; 
+        }
+
+        .chatbox-header {
+            background-color: #1a976d;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .chatbox-content {
+            padding: 10px;
+            overflow-y: auto;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .chatbox-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .chatbox-footer input {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chatbox-footer button {
+            background-color: #1a976d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chatbox-footer button:hover {
+            background-color: #162843;
+        }
+
+        .chatbox-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a976d;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .centered-text {
+            text-align: center;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="video-overlay">
+            <video autoplay muted loop class="background-video">
+                <source src="MEDIA/viddback.mp4" video/mp4">
+            </video>
+        </div>
+        <div class="text-overlay">
+            <h1><b>WHAT IS 14 TRAILS?</b></h1>
+            <p><i>Walk the Trails, Feel the Magic of Malaysia</i></p>
+        </div>
+    </header>
+
+    <div class="container about-us">
+        <h2>Who We Are</h2>
+        <div class="image-slider">
+            <div class="image-box">
+                <img src="MEDIA/who_we_are_image.jpg" alt="Who We Are">
+            </div>
+            <div class="image-box elegant-box">
+                <p>We are a passionate and enthusiastic team driven by a deep love for exploring the unparalleled beauty and vibrant diversity of Malaysia. From its pristine beaches and lush rainforests to its bustling cities and charming villages, Malaysia offers a rich tapestry of cultures, landscapes, and experiences. Our mission is to uncover and showcase the top vacation destinations across this incredible country, providing you with inspiring ideas and valuable insights to plan your perfect getaway. Whether you’re a nature enthusiast, a history buff, or simply seeking a relaxing retreat, we’re here to guide you every step of the way on your journey to discovering the hidden gems and iconic landmarks of Malaysia.</p>
+            </div>
+        </div>
+
+        <h2>Contact Cards</h2>
+        <div style="display: flex; justify-content: center;"> 
+            <div class="contact-card">
+                <div class="card-inner">
+                    <div class="card-front">Nur Azwa</div>
+                    <div class="card-back">
+                        <img src="MEDIA/azwa.jpg" alt="Azwa">
+                        <p class="centered-text">Team Leader</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="card-inner">
+                    <div class="card-front">Aqmal Haqim</div>
+                    <div class="card-back">
+                        <img src="MEDIA/malqim.jpg" alt="Qim">
+                        <p class="centered-text">Travel Expert</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="card-inner">
+                    <div class="card-front">Muhd Hakim</div>
+                    <div class="card-back">
+                        <img src="MEDIA/hakim.jpg" alt="kim">
+                        <p class="centered-text">Website Creator</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="card-inner">
+                    <div class="card-front">Amirah Rasyidah</div>
+                    <div class="card-back">
+                        <img src="MEDIA/mirah.jpg" alt="rah">
+                        <p class="centered-text">Editor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>What We Offer</h2>
+        <div class="image-slider">
+            <div class="image-box elegant-box" style="margin-bottom: 20px;">
+                <p>This website serves as your ultimate travel guide and inspiration hub, designed to help you uncover the best Malaysia has to offer. Packed with interactive maps, detailed travel tips, and expert advice, we aim to make your journey through Malaysia seamless and unforgettable. In addition to popular tourist spots, we bring you exclusive insights into lesser-known hidden gems that reveal the true essence of the country. Whether you're seeking adventure, cultural experiences, or a peaceful retreat, our comprehensive resources are tailored to ensure you have all the tools and inspiration you need to make the most of your travel experience in Malaysia.</p>
+            </div>
+            <div class="image-box" style="text-align: right;">
+                <img src="MEDIA/what_we_offer_image.jpg" alt="What We Offer" style="margin-top: 20px;">
+            </div>
+        </div>
+
+        <h2>Why Malaysia?</h2>
+        <p>Malaysia boasts a rich cultural heritage, breathtaking landscapes, and diverse attractions. We focus on Malaysian destinations because they offer unique experiences that set them apart globally.</p>
+        <div class="image-slider">
+            <div class="slider-container">
+                <div class="slider-item"><img src="MEDIA/image1.jpg" alt="Destination 1" onclick="openModal(this.src)"></div>
+                <div class="slider-item"><img src="MEDIA/image2.jpg" alt="Destination 2" onclick="openModal(this.src)"></div>
+                <div class="slider-item"><img src="MEDIA/image3.jpg" alt="Destination 3" onclick="openModal(this.src)"></div>
+                <div class="slider-item"><img src="MEDIA/image4.jpg" alt="Destination 4" onclick="openModal(this.src)"></div>
+                <div class="slider-item"><img src="MEDIA/image5.jpg" alt="Destination 5" onclick="openModal(this.src)"></div>
+                <div class="slider-item"><img src="MEDIA/image6.jpg" alt="Destination 6" onclick="openModal(this.src)"></div>
+            </div>
+        </div>
+        
+        <div class="testimonials">
+            <h3>Testimonials</h3>
+            <p>"My trip to Malaysia was unforgettable! The hidden gems we discovered were beyond my expectations." - Traveler A</p>
+            <p>"I loved exploring the vibrant culture and stunning landscapes. Can't wait to go back!" - Traveler B</p>
+        </div>
+
+        <h2>Interactive and Visual Elements</h2>
+        <p>Check out our dynamic map of Malaysia highlighting must-visit destinations and a timeline showcasing our journey in Malaysian tourism.</p>
+
+        <div class="cta">
+            <h2>Join Us!</h2>
+            <p>Explore our website, follow us on social media, or contact us for travel tips!</p>
+            <a href="Homepage.html">Get Started</a>
+        </div>
+    </div>
+
+    
+    <div class="chatbox-container" id="chatboxContainer" style="display: flex; align-items: center; justify-content: center;">
+        <div class="chatbox-header" onclick="toggleChatBox()">
+            <span>Hi, I am your Travel Advisor</span>
+        </div>
+        <div class="chatbox-content">
+            <p>Feel free to message us with any inquiries related to travel destinations in Malaysia. We're happy to help!</p>
+            <p>For other inquiries, please reach out to our team:</p>
+            <ul>
+                <li>General Travel Tips</li>
+                <li>Accommodation Suggestions</li>
+                <li>Local Travel Experiences</li>
+            </ul>
+        </div>
+        <form action="mailto:hakim888801@gmail.com" method="POST" enctype="multipart/form-data">
+            <div class="chatbox-footer">
+                <input type="text" name="message" placeholder="Write your message..." required>
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="MEDIA/logo-placeholder.png"Logo">
+                <p>The Proper Way to Travel</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">Services</a></li>
+                    <li><a href="about.html">Process</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="destinations.html">Top Places</a></li>
+                    <li><a href="destinations.html">Learn More</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="chatbox-toggle" onclick="toggleChatBox()">💬</div>
+
+    <footer>
+        <p>&copy; 2025 14 Trails. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleChatBox() {
+            const chatbox = document.getElementById('chatboxContainer');
+            chatbox.style.display = chatbox.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>

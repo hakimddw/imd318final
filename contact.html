@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | 14 Trails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <head>
+        <body>
+            <nav class="navbar">
+                <a href="#" class="logo">14 Rails</a>
+                <ul>
+                    <li><a href="Homepage.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="destinations.html">Destination</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            color: #333;
+            background: #f9f9f9;
+            font-size: 1.2rem;
+        }
+
+        .navbar {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        header {
+            background: url('Media/header-image.jpg.png') no-repeat center center/cover;
+            height: 18vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .glow {
+            text-shadow: 0 0 5px rgb(61, 175, 172), 0 0 5px white;
+        }
+
+        .container {
+            width: 90%;
+            margin: 2rem auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .contact-info, .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-size: 1.5rem;
+            line-height: 2;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p i {
+            font-size: 1.5rem;
+            color: #FF5A1F;
+        }
+
+        .contact-form h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            background: #FF5A1F;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background: #E04A1A;
+        }
+
+        .features-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .features-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .features-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            width: 30%;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature-card img {
+            width: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section {
+            background: #162843;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-container h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background: #07678d;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            background: #07678d;
+        }
+
+        .cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta a {
+            background: #1a976d;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .cta a:hover {
+            background: #162843;
+        }
+        footer-section {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo img {
+            width: 100px;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            flex: 1;
+            text-align: left;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #162843;
+        }
+
+        .footer-links a:hover {
+            color: #FF5A1F;
+        }
+
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #377446;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .scroll-top:hover {
+            background: #a7e794;
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header>
+        <h1 class="glow"><b>Contact Us</b></h1>
+        <p class="glow"><i>We'd love to hear from you!</i></p>
+    </header>
+
+    <div class="container">
+        <div class="contact-info">
+            <h3>Connect With Us!</h3>
+            <p><i class="fas fa-phone"></i><b>Phone:</b> 0172467803</p>
+            <p><i class="fas fa-envelope"></i><b>Email:</b> fourteentrails@gmails.com</p>
+            <p><i class="fas fa-map-marker-alt"></i><b>Address:</b>Jalan Kampung Chinggung, 35900 Tanjong Malim, Perak</p>
+        </div>
+
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+            <form action="mailto:your-email@example.com" method="POST">
+                <input type="text" placeholder="First Name" required>
+                <input type="text" placeholder="Last Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message..." rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="features-section">
+        <h2>Why Choose 14 Trails?</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <img src="MEDIA/icons1.jpg" alt="Icon">
+                <h3>Seasoned Experts</h3>
+                <p>Explore travel insights and tailored plans for memorable journeys.</p>
+            </div>
+            <div class="feature-card">
+                <img src="MEDIA/icons2.jpg" alt="Icon">
+                <h3>Trusted Partner</h3>
+                <p>Your perfect companion in exploring destinations and achieving unforgettable experiences.</p>
+            </div>
+            <div class="feature-card">
+                <img src="MEDIA/icons3.jpg" alt="Icon">
+                <h3>Open Book, Open Heart</h3>
+                <p>Transparent and flexible plans with exceptional care for every traveler.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <div class="cta-container">
+            <h2 style="margin-bottom: 1.5rem;">Transform Your Travel Experience Today.</h2>
+            <a href="main.html" class="cta-button">Start the Journey</a>
+        </div>
+    </div>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="MEDIA/logo-placeholder.png" alt="Logo">
+                <p>The Proper Way to Travel</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">Services</a></li>
+                    <li><a href="about.html">Process</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="destinations.html">Top Places</a></li>
+                    <li><a href="destinations.html">Learn More</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></a>
+    <footer>
+        <p>&copy; 2025 14 Trails. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        
+        const scrollTopBtn = document.getElementById("scroll-top");
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        });
+
+        scrollTopBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+</body>
+</html>
