@@ -9,7 +9,7 @@
 
 main {
     height: 100vh;
-    background: url('MEDIA/MALAYSIA.png') no-repeat;
+    background: url('MALAYSIA.png') no-repeat;
     background-size: cover;
     background-position: center;
 }
